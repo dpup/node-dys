@@ -1,13 +1,11 @@
 
 var dispatch = require('dispatch');
 
-var o = {
-  //filter: /\.(jpg|txt)$/ // only allow jpegs and text files.
-};
-
 dispatch.newServer(4101, '127.0.0.1').
-    addModule(dispatch.newLoggingModule('/Users/pupius/Projects/mne.ma/logs')).
-    addModule(dispatch.newStaticFileModule('images/*', '/Users/pupius/Pictures', o)).
+    addModule(dispatch.newLoggingModule('/tmp/')).
+    addModule(dispatch.newStaticFileModule('images/*', '/Users/pupius/Pictures', {
+      filter: /\.(jpg|gif|png|html)$/ // only allow web friendly images and HTML.
+    })).
     addAction('/', function(ctx) {
       var req = ctx.get('core.request');
       var res = ctx.get('core.response');
