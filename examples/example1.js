@@ -3,9 +3,10 @@ var dispatch = require('dispatch');
 
 dispatch.newServer(4101, '127.0.0.1').
     addModule(dispatch.newLoggingModule('/tmp/')).
-    addModule(dispatch.newStaticFileModule('images/*', '/Users/pupius/Pictures', {
-      filter: /\.(jpg|gif|png|html)$/ // only allow web friendly images and HTML.
-    })).
+    addModule(dispatch.newStaticFileModule()
+        .serveFiles('/images/', '/Users/pupius/Pictures', {
+          filter: /\.(jpg|gif|png|html)$/ // only allow web friendly images and HTML.
+        })).
     addAction('/', function(ctx) {
       var req = ctx.get('core.request');
       var res = ctx.get('core.response');
