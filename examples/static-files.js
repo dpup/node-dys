@@ -15,9 +15,10 @@
 
 var dispatch = require('dispatch');
 
-dispatch.newServer(4101, '127.0.0.1').
-    addModule(dispatch.newRequestLogModule('/tmp')).
-    addModule(dispatch.newStaticFileModule({reStatTime: 2}).
+new dispatch.Server(4101, '127.0.0.1').
+    addModule(new dispatch.RequestLogModule('/tmp')).
+    addModule(new dispatch.StatsModule()).
+    addModule(new dispatch.StaticFileModule({reStatTime: 2}).
         serveFiles('/images/*', __dirname + '/images', {
           // Only allow certain image files.
           filter: /\.(jpg|gif|png)$/,
@@ -26,5 +27,5 @@ dispatch.newServer(4101, '127.0.0.1').
           cacheLifetime: 5,
         }).
         serveFile('/', __dirname + '/images/ada.html')).
-    addAction('/favicon.ico', dispatch.newSimpleAction(404, '<h1>404 Not Found</h1>')).
+    addAction('/favicon.ico', new dispatch.SimpleAction(404, '<h1>404 Not Found</h1>')).
     start();
