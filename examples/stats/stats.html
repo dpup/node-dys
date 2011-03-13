@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Monitoring example</title>
+  <!--
+    Pardon the janky graphics, was on a plane and wanted to knock something
+    up quickly.
+    TODO: Use canvas.
+  -->
+  <style>
+    body {
+      font: normal 12px arial;
+    }
+    #g {
+      position: relative;
+      width: 200px;
+      height: 550px;
+      background-color: #eee;
+    }
+    #g div {
+      position: absolute;
+      width: 2px;
+      bottom: 0px;
+    }
+    .u {
+      background-color: #333;
+    }
+    .t {
+      background-color: #999;
+    }
+    #action {
+      color: #00A;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="g"></div>
+<p><span id="action">Do stuff</span></p>
+<p>Dark grey = heap used<br>
+  Light grey = heap total<br>
+  "Do stuff" creates a bunch of objects, then waits 3 seconds before serializing
+  them and writing to the response.
+</p>
+<script>
+
+var stats = [];
+var maxStats = 300;
+
+document.getElementById('g').style.width = (maxStats * 2) + 'px';
+
+document.getElementById('action').addEventListener('click', function(e) {
+  var x = new XMLHttpRequest();
+  x.open('GET', '/dostuff');
+  x.send(null);
+});
+
+function drawStats() {
+  for (var i = 0; i < stats.length; i++) {
+    var heapUsed = Math.round(stats[i].memory.heapUsed / 100000);
+    var heapTotal = Math.round(stats[i].memory.heapTotal / 100000);
+    getElement('t', i).style.height = heapTotal + 'px';
+    getElement('u', i).style.height = heapUsed + 'px';
+  }
+}
+
+function getElement(prefix, num) {
+  var el = document.getElementById(prefix + num);
+  if (!el) {
+    el = document.createElement('div');
+    el.id = prefix + num;
+    el.className = prefix;
+    el.style.left = (num * 2) + 'px';
+    document.getElementById('g').appendChild(el);
+  }
+  return el;
+}
+
+function updateStats() {
+  var x = new XMLHttpRequest();
+  x.open('GET', '/__stats/?type=json&filter=memory');
+  x.onload = function(evt) {
+    try {
+      var o = JSON.parse(x.responseText);
+      stats.push(o);
+      if (stats.length > maxStats) stats.shift();
+      drawStats();
+    } catch (e) {
+      console.error('Bad response from /__stats', e, e.responseText);
+    }
+  };
+  x.send(null);
+}
+
+setInterval(updateStats, 100);
+updateStats();
+
+</script>
+</body>
+</html>
