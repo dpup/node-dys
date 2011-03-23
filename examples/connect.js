@@ -4,7 +4,7 @@
  * This example requires that 'connect' be installed and accessible via the
  * node package management system.
  *
- * i.e. node install connect
+ * i.e. npm install connect
  *
  * @author dan@pupi.us (Daniel Pupius)
  */
