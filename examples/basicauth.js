@@ -9,12 +9,12 @@ var dispatch = require('dispatch');
 new dispatch.Server(4107, '127.0.0.1').
     addModule(new dispatch.RequestLogModule('/tmp')).
     addModule(new dispatch.StatsModule()).
-    addModule(new dispatch.auth.BasicAuthModule('Test Realm').
+    addModule(new dispatch.auth.BasicAuthModule('Basic Auth Test').
         // Provide a hardcoded set of usernam/password pairs.
         withUserMap({
-          'dan': 'dan123',
-          'bob': 'bob456',
-          'bill': 'bill789'
+          'dan': 'dan1234',
+          'bob': 'bob4567',
+          'bill': 'bill7890'
         }).
         // Only require auth for paths beginning with 'a'.
         useRegExpFilter(/\/a.*/)).
