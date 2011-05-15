@@ -22,7 +22,7 @@ new dispatch.Server(4109, '127.0.0.1').
       var visits = cookies.get('visits', 0);
       visits++;
       cookies.set('visits', visits, {
-        maxAge: Date.now() + 365 * 24 * 60 * 60,
+        expires: Date.now() + 365 * 24 * 60 * 60,
         path: path
       });
 
