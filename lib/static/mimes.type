@@ -91,6 +91,7 @@ application/x-bzip2				bz2 boz
 application/x-cdlink				vcd
 application/x-chat				chat
 application/x-chess-pgn				pgn
+application/x-chrome-extension				crx
 application/x-cpio				cpio
 application/x-csh				csh
 application/x-debian-package			deb udeb
