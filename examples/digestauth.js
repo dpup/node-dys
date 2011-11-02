@@ -4,12 +4,12 @@
  * @author dan@pupi.us (Daniel Pupius)
  */
 
-var dispatch = require('dispatch');
+var dys = require('dys');
 
-new dispatch.Server(4108, '127.0.0.1').
-    addModule(new dispatch.RequestLogModule('/tmp')).
-    addModule(new dispatch.StatsModule()).
-    addModule(new dispatch.auth.DigestAuthModule('Digest Auth Test Realm').
+new dys.Server(4108, '127.0.0.1').
+    addModule(new dys.RequestLogModule('/tmp')).
+    addModule(new dys.StatsModule()).
+    addModule(new dys.auth.DigestAuthModule('Digest Auth Test Realm').
         // Provide a hardcoded set of usernam/password pairs.
         withUserMap({
           'dan': 'dan1234',

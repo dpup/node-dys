@@ -1,17 +1,17 @@
 /**
  * @fileoverview Example : Cookies.
  *
- * Demonstrates how to use the cookie functionality in dispatch.
+ * Demonstrates how to use the cookie functionality in dys.
  *
  * @author dan@pupi.us (Daniel Pupius)
  */
 
-var dispatch = require('dispatch');
+var dys = require('dys');
 
-new dispatch.Server(4109, '127.0.0.1').
-    addModule(new dispatch.RequestLogModule('/tmp')).
-    addModule(new dispatch.StatsModule()).
-    addModule(new dispatch.CookieModule()).
+new dys.Server(4109, '127.0.0.1').
+    addModule(new dys.RequestLogModule('/tmp')).
+    addModule(new dys.StatsModule()).
+    addModule(new dys.CookieModule()).
     addAction('/*', function(ctx) {
       var path = ctx.get('path');
       var req = ctx.get('request');

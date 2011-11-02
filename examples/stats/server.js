@@ -7,16 +7,16 @@
  * @author dan@pupi.us (Daniel Pupius)
  */
 
-var dispatch = require('dispatch');
+var dys = require('dys');
 
-new dispatch.Server(4102, '127.0.0.1').
-    addModule(new dispatch.StatsModule()).
-    addModule(new dispatch.StaticFileModule({
+new dys.Server(4102, '127.0.0.1').
+    addModule(new dys.StatsModule()).
+    addModule(new dys.StaticFileModule({
       // Disable browser caching and tell the module to only cache file for 2s,
       // this makes development easier.
       'cacheLifetime': 0, 'reStatTime': 2
     }).serveFile('/', __dirname + '/stats.html')).
-    addAction('/favicon.ico', new dispatch.SimpleAction(404, '<h1>404 Not Found</h1>')).
+    addAction('/favicon.ico', new dys.SimpleAction(404, '<h1>404 Not Found</h1>')).
     addAction('/dostuff', function(ctx) {
       var res = ctx.get('response');
       var dates = [];

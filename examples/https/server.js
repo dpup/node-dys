@@ -11,9 +11,9 @@
  * @author dan@pupi.us (Daniel Pupius)
  */
 
-var dispatch = require('dispatch');
+var dys = require('dys');
 
-new dispatch.Server(4105, '127.0.0.1').
+new dys.Server(4105, '127.0.0.1').
     withCredentials(__dirname + '/privatekey.pem', __dirname + '/certificate.pem').
     addAction('/', function(ctx) {
       var req = ctx.get('request');

@@ -13,12 +13,12 @@
  * @author dan@pupi.us (Daniel Pupius)
  */
 
-var dispatch = require('dispatch');
+var dys = require('dys');
 
-new dispatch.Server(4101, '127.0.0.1').
-    addModule(new dispatch.RequestLogModule('/tmp')).
-    addModule(new dispatch.StatsModule()).
-    addModule(new dispatch.StaticFileModule({reStatTime: 2}).
+new dys.Server(4101, '127.0.0.1').
+    addModule(new dys.RequestLogModule('/tmp')).
+    addModule(new dys.StatsModule()).
+    addModule(new dys.StaticFileModule({reStatTime: 2}).
         serveFiles('/images/*', __dirname + '/images', {
           // Only allow certain image files.
           filter: /\.(jpg|gif|png)$/,
@@ -27,5 +27,5 @@ new dispatch.Server(4101, '127.0.0.1').
           cacheLifetime: 5,
         }).
         serveFile('/', __dirname + '/images/ada.html')).
-    addAction('/favicon.ico', new dispatch.SimpleAction(404, '<h1>404 Not Found</h1>')).
+    addAction('/favicon.ico', new dys.SimpleAction(404, '<h1>404 Not Found</h1>')).
     start();
