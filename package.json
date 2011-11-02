@@ -1,6 +1,6 @@
 {
   "name" : "dys",
-  "version" : "0.1.0",
+  "version" : "0.1.1",
   "description" : "HTTP dispatching framework, using an action/interceptor model and Guice-like dependency injection.",
   "keywords" : ["http", "web", "servlet", "filter", "action", "interceptor", "dependency injection"],
   "repository" : {
@@ -16,6 +16,7 @@
   "main" : "./lib/dys.js",
   "directories": {"lib": "./lib"},
   "dependencies": {
-    "flags": ">= 0.1.0"
+    "flags": ">= 0.1.0",
+    "logg": ">= 0.1.0"
   }
 }
