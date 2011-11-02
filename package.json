@@ -16,7 +16,7 @@
   "main" : "./lib/dys.js",
   "directories": {"lib": "./lib"},
   "dependencies": {
-    "flags": ">= 0.1.0",
+    "flags": "0.1.1",
     "logg": ">= 0.1.0"
   }
 }
