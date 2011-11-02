@@ -14,5 +14,8 @@
     "url" : "http://pupius.co.uk"
   },
   "main" : "./lib/dys.js",
-  "directories": {"lib": "./lib"}
+  "directories": {"lib": "./lib"},
+  "dependencies": {
+    "flags": ">= 0.1.0"
+  }
 }
