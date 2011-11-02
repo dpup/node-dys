@@ -1,6 +1,0 @@
-[submodule "node_modules/flags"]
-	path = node_modules/flags
-	url = git@github.com:dpup/node-flags.git
-[submodule "node_modules/logging"]
-	path = node_modules/logging
-	url = git@github.com:dpup/node-logging.git
